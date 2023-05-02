@@ -21,11 +21,11 @@ body {
   font-size: 2rem;
 }
 
-.orange-btn {
+.red-btn {
   background-color: var(--secondary-clr);
 }
 
-.orange-btn:hover {
+.red-btn:hover {
   background-color: var(--secondary-clr-ltr);
 }
 
@@ -42,6 +42,7 @@ header {
 }
 
 main {
+  margin-top: 300px;
   min-height: 500px;
   display: flex;
   justify-content: center;
@@ -63,6 +64,7 @@ button {
 }
 
 .calculator-screen {
+  text-align: right;
   margin-bottom: 1.2em;
   padding: 0.2em 0.7em;
   background-color: var(--primary-light);
@@ -74,7 +76,6 @@ button {
   color: black;
   min-height: 70px;
   width: 98%;
-  text-align: right;
   font-size: 2.2rem;
   border: none;
   background: transparent;
@@ -82,7 +83,6 @@ button {
 
 .calculator-screen-last {
   min-height: 25px;
-  text-align: right;
   font-size: 1.2rem;
   background: transparent;
   border: none;
@@ -94,6 +94,10 @@ button {
   grid-template-columns: repeat(4, 1fr);
   gap: 0.2em;
   margin-top: 1em;
+}
+
+.span-3 {
+  grid-column: span 3;
 }
 
 .span-2 {
