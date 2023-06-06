@@ -18,7 +18,6 @@ let currentNumber2 = 0;
 // Event listeners
 
 currentCalculatorScreen.addEventListener("input", () => {
-  equalSignButton.disabled = false;
   hasExpressionBeenEvaluated = false;
 });
 
@@ -27,6 +26,12 @@ window.addEventListener("keydown", handleKeybordInput);
 equalSignButton.addEventListener("click", () => {
   if (!hasExpressionBeenEvaluated) {
     evaluate();
+  } else if (currentOperator !== null) {
+    updateCurrentNumber2();
+    evaluate();
+  } else {
+    currentNumber1 = Number(currentCalculatorScreen.textContent);
+    updateLastScreen();
   }
 });
 
@@ -46,13 +51,16 @@ operatorButtons.forEach((btn) => {
 
 function evaluate() {
   lastCalculatorScreen.textContent += ` ${currentNumber2} =`;
-  currentCalculatorScreen.textContent = operate(
+  const result = operate(
     Number(currentNumber1),
     Number(currentNumber2),
     currentOperator
   );
+  currentCalculatorScreen.textContent = result;
+  currentNumber1 = result;
+
   hasExpressionBeenEvaluated = true;
-  equalSignButton.disabed = true;
+  currentOperator = null;
 }
 
 function resetCurrentScreen() {
@@ -70,7 +78,9 @@ function updateCurrentNumber(val) {
 }
 
 function updateLastScreen() {
-  lastCalculatorScreen.textContent = `${currentNumber1} ${currentOperator}`;
+  if (currentOperator !== null) {
+    lastCalculatorScreen.textContent = `${currentNumber1} ${currentOperator}`;
+  }
 }
 
 function updateCurrentScreen(val) {
